@@ -18,53 +18,68 @@
   <body>
     <div class="hero-unit">
       <h1>Práctica validación formularios</h1>
-      <p>Aquí debería ir el enlace a <a href="https://github.com/juanda99/practica-validacion-formularios">tu respositorio en GitHub</a>, donde estará la versión de desarrollo.</p>
+      <p><a href="https://github.com/pabloiglesias/practica-validacion-formularios">respositorio en GitHub</a>, versión de desarrollo.</p>
     </div>
     <div class="contenedor">
         <div>
-            <h2> DATOS DE CONTACTO</h2>
-             <legend>Nombre<input type="text" name="nombre"></legend>
-         </div>
-         <div>
-             <legend>Apellidos<input type="text"></legend>
-         </div>
-         <div>
-             <legend>Telefono<input type="text"></legend>
-         </div>
-         <div>
-             <legend>Email<input type="text"></legend>
-         </div>
-         <div>
-             <legend>Re-Email<input type="text"></legend>
-         </div> 
-         <div>
-             <legend>¿Como nos has conocido?<input type=""></legend>
-         </div> 
-         <h2>Datos de Facturacion</h2>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
-         <div>
-             <legend><input type="text"></legend>
-         </div>
+        <div id="form_container">
+    
+        <h1><a>Información de Contacto:</a></h1>
+        <form id="form_973471" class="appnitro"  method="post" action="">
+                    <div class="form_description">
+            <h2>Información de Contacto:</h2>
+            <p></p>
+        </div>                      
+            <ul >
+            
+                    <li id="li_1" >
+        <label class="description" for="element_1">Nombre </label>
+        <div>
+            <input id="element_1" name="element_1" class="element text medium" type="text" maxlength="255" value=""/> 
+        </div> 
+        </li>       <li id="li_2" >
+        <label class="description" for="element_2">Apellidos </label>
+        <div>
+            <input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
+        </div> 
+        </li>  
+             <li id="li_3" >
+        <div>
+        <label class="description" for="element_3">Telefono </label>
+        
+            <input id="element_3" name="element_3" class="element text medium" type="text" maxlength="255" value=""/> 
+        </div> 
+        </li>       <li id="li_4" >
+        <label class="description" for="element_4">Email </label>
+        <div>
+            <input id="element_4" name="element_4" class="element text medium" type="text" maxlength="255" value=""/> 
+        </div> 
+        </li>       <li id="li_5" >
+        <label class="description" for="element_5">Re-Email </label>
+        <div>
+            <input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value=""/> 
+        </div> 
+        </li>       <li id="li_6" >
+        <label class="description" for="element_6">¿Como nos has conocido? </label>
+        <div>
+        <select class="element select medium" id="element_6" name="element_6"> 
+            <option value="" selected="selected"></option>
+                <option value="1" >Prefiero no contestar</option>
+                <option value="2" >Publicidad</option>
+                <option value="3" >Profesionales del sector</option>
+                <option value="4" >Internet</option>
+                <option value="5" >A través de un amigo o conocido</option>
+        </select>
+        </div> 
+        </li>
+            
+                    <li class="buttons">
+                <input type="hidden" name="form_id" value="973471" />
+                
+                <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+        </li>
+            </ul>
+        </form> 
     </div>
 
 
