@@ -1,5 +1,5 @@
 <?php
-$cp = $_GET["cp"];
+$cp = substr($_GET["cp"], 0, 2);
 // Cargar provincias
 header("Access-Control-Allow-Origin: *"); // permite usar CORS
 //Cadena de conexión seleccionando bd:
@@ -14,7 +14,8 @@ if ($errorbd == null) {
 	$cp . substr($cp, 0, 1);
 	echo $cp;
 
-	$sql = "SELECT  cod_prov FROM poblaciones where cod_prov";
+	$sql = "SELECT  cod_prov FROM poblaciones where cod_prov=" . $cp+";";
+
 	$json = $sql;
 } else {
 	// si la conexión da error
