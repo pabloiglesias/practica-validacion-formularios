@@ -1,4 +1,5 @@
 <?php
+$cp = $_GET["cp"];
 // Cargar provincias
 header("Access-Control-Allow-Origin: *"); // permite usar CORS
 //Cadena de conexión seleccionando bd:

@@ -1,35 +1,43 @@
- "use strict";
- $("#formulario").validate({
-rules:{
-nombre:{
-required: true,
-minlength: 2
-},
-apellidos: "required",
-telefono: {
-required: true,
-minlength: 9,
-maxlength: 9,
-digits: true
-},
-email: {
-required: true,
-email: true
-},
-email2:{
-required: true,
-equalTo: email
-},
-cif: "required",
-nombreempresa: "required",
-direccion: "required",
+ 'use strict';
+ $('#formulario').validate({
+	rules:{
+	nombre:{
+	required: true,
+	minlength: 2
+	},
+	apellidos: {
+		required=true,
+
+	},
+	telefono: {
+	required: true,
+	minlength: 9,
+	maxlength: 20,
+	digits: true
+	},
+	email: {
+	required: true,
+	email: true
+	},
+	email2:{
+	required: true,
+	equalTo: email
+	},
+	cif: {
+	required:true,
+	},
+nombreempresa: {required},
+direccion:{required:true,},
 cp: {
 required: true,
 minlength: 4,
 maxlength: 5,
-digits: true
+digits: true,
+remote:"provincias.php",
 },
-localidad: "required",
+localidad: {
+	required:true,
+},
 provincia: "required",
 pais: "required",
 iban: {
@@ -41,7 +49,15 @@ required: true,
 minlength: 4
 },
 contraseña: "required"
-}
+},
+messages:(
+	nombre:"Campo obligatorio"
+	),
+	apellidos:"Campo requerido"
+	),
+
+
+
 });
 $("#particular").change(function(){
 if($('#particular').is(":checked")){
