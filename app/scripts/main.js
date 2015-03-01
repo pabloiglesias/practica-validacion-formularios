@@ -6,7 +6,7 @@
 	minlength: 2
 	},
 	apellidos: {
-		required=true,
+		required:true,
 
 	},
 	telefono: {
@@ -50,15 +50,19 @@ minlength: 4
 },
 contraseña: "required"
 },
-messages:(
-	nombre:"Campo obligatorio"
-	),
-	apellidos:"Campo requerido"
-	),
-
-
-
-});
+messages:{
+	nombre:{
+		required:"Campo obligatorio"
+	},
+	apellidos:{
+		required:"Campo requerido"
+	}
+},
+submitHanler:function(){
+	alert("");
+}
+}
+};	
 $("#particular").change(function(){
 if($('#particular').is(":checked")){
 $("#nombreemp").html("Nombre");
@@ -86,12 +90,11 @@ var cp= $("#cp").val();
 var promise = $.ajax({
 type: 'POST',
 "url" : "../php/provincias.php",
-"dataType": "json",
-data : {cp : cp}
+"dataType": "json"
 });
 promise.done(function(data){
 
-$('#provincia').attr('val',data['municipio']);
+$('#provincia').attr('val',data['poblacion']);
 });
 promise.fail(function(){
 console.log("Error al importar municipio y provincia");
@@ -111,12 +114,12 @@ $('#usuario').prop('readonly' , true);
 });
 //establecer la password compleja
 $("#password").focusin(function(){
-$("#password").complexify(options, callback(valid, complexity){
-alert("Password complexity: " + complexity);
+$("#password").complexify(options, callback(valid, complexity)){
+	alert('Password complexity: '+ complexity);
+}
 });
-});
-$("#password").focusin(function () {
-$("#password").complexify({}, function (valid, complexity) {
-$("#complex").attr("value",complexity);
+$('#password').focusin(function () {
+$('#password').complexify({}, function (valid, complexity) {
+$('#complex').attr('value',complexity);
 });
 });
