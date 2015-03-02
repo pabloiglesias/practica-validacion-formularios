@@ -1,9 +1,14 @@
 {
   "name": "practica-validacion-formularios",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "jquery-validate": "~1.13.1",
+    "jquery.complexify.js": "*",
+    "jquery": "~2.1.3"
+  },
   "devDependencies": {
     "jquery-validate": "~1.13.1",
-    "jquery.complexify.js": "*"
+    "jquery.complexify.js": "*",
+    "jquery": "~2.1.3"
   }
 }
