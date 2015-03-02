@@ -23,11 +23,11 @@
     </div>
 <div class="contenedor">
 <div class="col-md-6">
-<form role="form" id="formulario" method="POST" novalidate action="#">
+<form role="form" novalidate id="formulario" method="post" action="#">
 <fieldset>
 <legend>Información de contacto</legend>
 <div class="form-group">
-<label for="nombre">Nombre<span class="important">*</span></label>
+<label for="nombre">Nombre<span class="error">*</span></label>
 <input type="text" class="form-control input-sm" name="nombre" id="nombre">
 </div>
 <div class="form-group">
@@ -101,10 +101,10 @@
 </div>
 <div class="form-group">
 <label for="sel2">Selecciona la forma de pago<span class="important">*</span></label>
-<select class="form-control" id="sel2">
-<option>Mensual</option>
-<option>Trimestral</option>
-<option>Anual</option>
+<select class="form-control" id="sel2" name="sel2">
+<option>Mensual 50 €</option>
+<option>Trimestral 140€</option>
+<option>Anual 550 €</option>
 </select>
 </div>
 <br>
@@ -131,6 +131,9 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
+    <script src="bower_components/jquery.complexify.js/jquery.complexify.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
