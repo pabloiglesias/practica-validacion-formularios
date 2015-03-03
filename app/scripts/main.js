@@ -1,4 +1,7 @@
  'use strict';
+ $('#formulario').each (function(){
+this.reset();
+});
 $(document).ready(function(){
 	$.extend($.validator.messages, {
 	required: "Este campo es obligatorio.",
@@ -23,6 +26,7 @@ $(document).ready(function(){
 	cifES: "Por favor, escribe un CIF válido."
 });
   $('#formulario').validate({
+  	focusCleanup: true,//vacia campos con errores
 	rules:{
 	nombre:{
 	required: true,
@@ -40,6 +44,7 @@ $(document).ready(function(){
 	},
 	email: {
 	required: true,
+	email:true,
 	remote:'login.php'
 	},
 	email2:{
@@ -59,7 +64,6 @@ $(document).ready(function(){
 	minlength: 4,
 	maxlength: 5,
 	digits: true,
-	remote:'provincias.php'
 	},
 	localidad: {
 	required:true,
@@ -99,7 +103,8 @@ $(document).ready(function(){
 	}
 	},
 submitHanler:function(){
-	confirm('Esta en proceso de alta y su cuota sera '+$('#sel2').val()+' '+ $);
+	alert('Esta en proceso de alta y su cuota sera '+$('#sel2').val()+' '+ $);
+	 window.location.reload();
 }
 }
 });
@@ -121,6 +126,7 @@ $('#nombreempresa').val('');
 $('#nombreempresa').prop('readonly', false);
 }
 });
+//metodo para rellenar provincia con cp
 $('#cp').focusout(function(){
 var dig= $('#cp').val();
 if(dig.lenght()===4){
@@ -134,37 +140,20 @@ type: 'GET',
 'dataType': 'json'
 });
 promise.done(function(data){
-$('#provincia').attr('value',data).html();
+	alert(data);
+$('#provincia').val(data);
 });
 promise.fail(function(){
 console.log('Error al importar municipio y provincia');
 });
 });
+//metodo rellenar nombre usuario con el correo 
 $('#email').focusout(function(){
-var email=null;
- email= $('#email').val();
-var promise = $.ajax({
-type: 'GET',
-'url': 'php/login.php',
-'dataType': 'json'
-});
-promise.done(function(data){
-if(data===null){
-var usu=$('email').val();
-	$('#usuario').val(usu);
-	$('#usuario').prop('readonly' , true);
+	$('#usuario').attr('value',$('#email').val());
+	$('#usuario').prop('readonly',true);
 
-}
-else
-{
-	alert('Error: Usuario ya existe');
-}
 });
-promise.fail(function(){
-	alert('Error: al importar el correo');
-});
-});
-//complexyty
+//complexyty para complejidad de contraseña con barra indicativa
 $('#password').focusin(function () {
 $('#password').complexify({}, function (valid, complexity) {
 $('#complex').attr('value',complexity);
@@ -172,7 +161,7 @@ $('#complex').attr('value',complexity);
 });
 });
 
-//cuando se completan los apellidos se rellena Nombre en los datos de facturación
+//metodo para rellenar nombre de empresa con apellido y nombre 
 $('#apellidos').focusout(function(){
 var completo = $('#nombre').val() +' '+ $('#apellidos').val();
 $('#nombreempresa').val(completo);

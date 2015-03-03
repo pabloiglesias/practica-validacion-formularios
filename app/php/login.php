@@ -1,5 +1,5 @@
 <?php
-$email = $_GET['email'];
+$email = trim(strtolower($_GET['email']));
 // Aceptamos peticiones cors
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
@@ -13,15 +13,12 @@ if ($errorbd == null) {
 	$sql = "SELECT email FROM usuarios;";
 	if (!$resultado = $db->query($sql)) {
 		die('Ocurrio un error ejecutando el query [' . $db->error . ']');}
+	$noexiste = true;
 	while ($resul = $resultado->fetch_assoc()) {
 		if ($email === $resul['email']) {
-			$data = $resul['email'];
+			$noexiste = false;
 		}
 	}
-	$json = json_encode($data);
-	echo isset($_GET['callback'])
-	? "{$_GET['callback']}($json)"
-	: $json;
 
 } else {
 	// si la conexión da error
