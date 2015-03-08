@@ -64,6 +64,7 @@ $(document).ready(function(){
 	minlength: 4,
 	maxlength: 5,
 	digits: true,
+	remote:'php/provincias.php'
 	},
 	localidad: {
 	required:true,
@@ -174,17 +175,17 @@ var completo = $('#nombre').val() +' '+ $('#apellidos').val();
 $('#nombreempresa').val(completo);
 $('#nombreempresa').prop('readonly',true);
 });
-$.validator.addMethod("iban", function(value, element) {
+$.validator.addMethod('iban', function(value, element) {
 // some quick simple tests to prevent needless work
 if (this.optional(element)) {
 return true;
 }
 // remove spaces and to upper case
-var iban = value.replace(/ /g, "").toUpperCase(),
-ibancheckdigits = "",
+var iban = value.replace(/ /g, '').toUpperCase(),
+ibancheckdigits = '',
 leadingZeroes = true,
-cRest = "",
-cOperator = "",
+cRest = '',
+cOperator = '',
 countrycode, ibancheck, charAt, cChar, bbanpattern, bbancountrypatterns, ibanregexp, i, p;
 if (!(/^([a-zA-Z0-9]{4} ){2,8}[a-zA-Z0-9]{1,4}|[a-zA-Z0-9]{12,34}$/.test(iban))) {
 return false;
@@ -292,3 +293,75 @@ return cRest === 1;
 }, "Por favor introduce un IBAN correcto");
 
 });
+jQuery.validator.addMethod( "nieES", function ( value, element ) {
+ "use strict";
+ 
+ value = value.toUpperCase();
+ 
+ // Basic format test
+ if ( !value.match('((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)') ) {
+  return false;
+ }
+ 
+ // Test NIE
+ //T
+ if ( /^[T]{1}/.test( value ) ) {
+  return ( value[ 8 ] === /^[T]{1}[A-Z0-9]{8}$/.test( value ) );
+ }
+ 
+ //XYZ
+ if ( /^[XYZ]{1}/.test( value ) ) {
+  return (
+   value[ 8 ] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(
+    value.replace( 'X', '0' )
+     .replace( 'Y', '1' )
+     .replace( 'Z', '2' )
+     .substring( 0, 8 ) % 23
+   )
+  );
+ }
+ 
+ return false;
+ 
+}, "NIE no valido." );
+ 
+ 
+ 
+jQuery.validator.addMethod( "cifES", function ( value, element ) {
+ "use strict";
+  
+ var sum,
+  num = [],
+  controlDigit;
+  
+ value = value.toUpperCase();
+  
+ // Basic format test
+ if ( !value.match( '((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)' ) ) {
+  return false;
+ }
+  
+ for ( var i = 0; i < 9; i++ ) {
+  num[ i ] = parseInt( value.charAt( i ), 10 );
+ }
+  
+ // Algorithm for checking CIF codes
+ sum = num[ 2 ] + num[ 4 ] + num[ 6 ];
+ for ( var count = 1; count < 8; count += 2 ) {
+  var tmp = ( 2 * num[ count ] ).toString(),
+   secondDigit = tmp.charAt( 1 );
+   
+  sum += parseInt( tmp.charAt( 0 ), 10 ) + ( secondDigit === '' ? 0 : parseInt( secondDigit, 10 ) );
+ }
+  
+ // CIF test
+ if ( /^[ABCDEFGHJNPQRSUVW]{1}/.test( value ) ) {
+  sum += '';
+  controlDigit = 10 - parseInt( sum.charAt( sum.length - 1 ), 10 );
+  value += controlDigit;
+  return ( num[ 8 ].toString() === String.fromCharCode( 64 + controlDigit ) || num[ 8 ].toString() === value.charAt( value.length - 1 ) );
+ }
+  
+ return false;
+  
+}, "Numero de CIF No valido." );

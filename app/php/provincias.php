@@ -1,5 +1,5 @@
 <?php
-$cp = $_GET["cp"];
+$cp = $_GET['cp'];
 // Cargar provincias
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *"); // permite usar CORS
