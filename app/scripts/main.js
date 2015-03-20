@@ -135,7 +135,7 @@ submitHanler:function(){
 $('#particular').change(function(){
 if($('#particular').is(':checked')){
 $('#nombreemp').html('Nombre');
-$('#cifnif').html('NIF');
+$('#cifniflabel').html('NIF');
 var completo = $('#nombre').val() + '' + $('#apellidos').val();
 $('#nombreempresa').val(completo);
 $('#nombreempresa').prop('readonly' , true);
