@@ -1,6 +1,5 @@
 <?php
 $cp = $_GET['cp'];
-$cp = substr($cp, 0, 2);
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *"); // permite usar CORS
 //Cadena de conexión seleccionando bd:
@@ -11,11 +10,11 @@ if ($errorbd == null) {
 //inicializamos el cliente en utf-8:
 	$db->set_charset("utf8");
 //creamos la consulta sobre la tabla provincias y localidades
-	$sql = 'SELECT provincia FROM provincias  where cod_prov=' . $cp . ';';
+	$sql = 'SELECT poblacion FROM poblaciones where cod_postal=' . $cp . ';';
 	if (!$resultado = $db->query($sql)) {
 		die('Ocurrio un error ejecutando el query [' . $db->error . ']');}
 	while ($resul = $resultado->fetch_assoc()) {
-		$data = $resul['provincia'];
+		$data = $resul['poblacion'];
 	}
 	$json = json_encode($data);
 	echo isset($_GET['callback'])

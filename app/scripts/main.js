@@ -26,7 +26,7 @@ $(document).ready(function(){
 	cifES: "Por favor, escribe un CIF válido."
 });
   $('#formulario').validate({
-  	focusCleanup: true,//vacia campos con errores
+  	focusCleanup: true,	
 	rules:{
 	nombre:{
 	required: true,
@@ -45,14 +45,30 @@ $(document).ready(function(){
 	email: {
 	required: true,
 	email:true,
-	remote:'login.php'
+	remote:'php/login.php'
 	},
 	email2:{
 	required: true,
 	equalTo: '#email'
 	},
-	cif: {
+	cifnif: {
 	required:true,
+	minlength:9,
+	remote:'php/validarNif.php',
+	nifES:function(){
+// Si el demandante es particular se comprueba formato nif.
+if ($('#particular').is(':checked')){
+$('#cifnif').val().toUpperCase();
+return 'nifES';
+}
+},
+cifES: function(){
+// Si el demandante es empresa se comprueba formato cif.
+if ($('#empresa').is(':checked')){
+$('#cifnif').val().toUpperCase();
+return 'cifES';
+}
+}
 	},
 	nombreempresa: {
 	required:true},
@@ -64,7 +80,6 @@ $(document).ready(function(){
 	minlength: 4,
 	maxlength: 5,
 	digits: true,
-	remote:'php/provincias.php'
 	},
 	localidad: {
 	required:true,
@@ -106,12 +121,12 @@ $(document).ready(function(){
 submitHanler:function(){
 	 var registrar=confirm('Esta en proceso de alta y su cuota sera '+$('#sel2').val());
 	if(registrar){
-	alert('Usuario Registrado');
+	prompt('Usuario Registrado');
 	 window.location.reload();
 	}
 	else
 	{
-		alert('Usuario No registrado');
+		prompt('Usuario No registrado');
 	}
 }
 }
@@ -137,25 +152,40 @@ $('#nombreempresa').prop('readonly', false);
 //metodo para rellenar provincia con cp
 $('#cp').focusout(function(){
 var dig= $('#cp').val();
-if(dig.lenght()===4){
+if(dig.length === 4){
 $('#cp').val('0' + dig);
 }
 var cp=null;
  cp= $('#cp').val();
-var promise = $.ajax({
+ var promise = $.ajax({
+url: 'php/provincias.php',
 type: 'GET',
-'url': 'php/provincias.php',
-'dataType': 'json'
+dataType: 'json',
+data: {cp: $('#cp').val()}
 });
 promise.done(function(data){
-	alert(data);
-$('#provincia').val(data);
+	$('#provincia').val(data);
 });
 promise.fail(function(){
 console.log('Error al importar municipio y provincia');
 });
 });
-//metodo rellenar nombre usuario con el correo 
+$('#cp').focusout(function(){
+var cp=null;
+ cp= $('#cp').val();
+ var promise = $.ajax({
+url: 'php/provincias2.php',
+type: 'GET',
+dataType: 'json',
+data: {cp: $('#cp').val()}
+});
+promise.done(function(data){
+	$('#localidad').val(data);
+});
+promise.fail(function(){
+console.log('Error al importar municipio y provincia');
+});
+});
 $('#email').focusout(function(){
 	$('#usuario').attr('value',$('#email').val());
 	$('#usuario').prop('readonly',true);
@@ -176,11 +206,9 @@ $('#nombreempresa').val(completo);
 $('#nombreempresa').prop('readonly',true);
 });
 $.validator.addMethod('iban', function(value, element) {
-// some quick simple tests to prevent needless work
 if (this.optional(element)) {
 return true;
 }
-// remove spaces and to upper case
 var iban = value.replace(/ /g, '').toUpperCase(),
 ibancheckdigits = '',
 leadingZeroes = true,
@@ -302,9 +330,6 @@ jQuery.validator.addMethod( "nieES", function ( value, element ) {
  if ( !value.match('((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)') ) {
   return false;
  }
- 
- // Test NIE
- //T
  if ( /^[T]{1}/.test( value ) ) {
   return ( value[ 8 ] === /^[T]{1}[A-Z0-9]{8}$/.test( value ) );
  }

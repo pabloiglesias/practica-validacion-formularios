@@ -1,22 +1,18 @@
 <?php
-$email = trim(strtolower($_GET['email']));
-// Aceptamos peticiones cors
+$dni = trim(strtolower($_GET['cifnif']));
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
-//Cadena de conexión
 $db = new mysqli("localhost", "pabloiglesias_bd", "provincias", "pabloiglesias_pro");
 $errorbd = $db->connect_errno;
 if ($errorbd == null) {
-//inicializamos el cliente en utf-8:
 	$db->set_charset("utf8");
-//creamos la consulta sobre la usuarios
-	$sql = "SELECT email FROM usuarios;";
+	$sql = "SELECT dni FROM usuarios;";
 	if (!$resultado = $db->query($sql)) {
 		die('Ocurrio un error ejecutando el query [' . $db->error . ']');}
 	$noexiste = true;
 	while ($resul = $resultado->fetch_assoc()) {
-		if ($email === $resul['email']) {
-			$noexiste = false;
+		if ($dni === $resul['dni']) {
+			$noexiste = 'NIF Registrado Imposible Registrar';
 		}
 	}
 
@@ -25,5 +21,5 @@ if ($errorbd == null) {
 	print "Imposible conectar con la bbdd ";
 }
 $db->close();
-
 unset($db);
+echo $noexiste;
