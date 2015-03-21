@@ -319,7 +319,7 @@ return cRest === 1;
 }, "Por favor introduce un IBAN correcto");
 
 });
-jQuery.validator.addMethod( "nieES", function ( value, element ) {
+jQuery.validator.addMethod( "nifES", function ( value, element ) {
  "use strict";
  
  value = value.toUpperCase();
