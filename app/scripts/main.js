@@ -319,7 +319,7 @@ return cRest === 1;
 }, "Por favor introduce un IBAN correcto");
 
 });
-Query.validator.addMethod("nifES", function(value, element) {
+jQuery.validator.addMethod("nifES", function (value, element) {
 if(/^([0-9]{8})*[a-zA-Z]+$/.test(value)){
 var dni = value.substr(0,value.length-1);
 var l = value.charAt(value.length-1);
