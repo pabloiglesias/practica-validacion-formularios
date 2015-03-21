@@ -319,34 +319,22 @@ return cRest === 1;
 }, "Por favor introduce un IBAN correcto");
 
 });
-jQuery.validator.addMethod( "nifES", function ( value, element ) {
- "use strict";
- 
- value = value.toUpperCase();
- 
- // Basic format test
- if ( !value.match('((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)') ) {
-  return false;
- }
- if ( /^[T]{1}/.test( value ) ) {
-  return ( value[ 8 ] === /^[T]{1}[A-Z0-9]{8}$/.test( value ) );
- }
- 
- //XYZ
- if ( /^[XYZ]{1}/.test( value ) ) {
-  return (
-   value[ 8 ] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(
-    value.replace( 'X', '0' )
-     .replace( 'Y', '1' )
-     .replace( 'Z', '2' )
-     .substring( 0, 8 ) % 23
-   )
-  );
- }
- 
- return false;
- 
-}, "NIE no valido." );
+Query.validator.addMethod("nifES", function(value, element) {
+if(/^([0-9]{8})*[a-zA-Z]+$/.test(value)){
+var dni = value.substr(0,value.length-1);
+var l = value.charAt(value.length-1);
+var pos = dni % 23;
+var letra='TRWAGMYFPDXBNJZSQVHLCKET';
+letra=letra.toUpperCase();
+letra=letra.substring(pos,pos+1);
+if (letra==l.toUpperCase()){
+return true;
+}
+else{
+return false;
+}
+}
+});
 jQuery.validator.addMethod( "cifES", function ( value, element ) {
  "use strict";
   
