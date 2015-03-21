@@ -29,46 +29,44 @@ $(document).ready(function(){
   	focusCleanup: true,	
 	rules:{
 	nombre:{
-	required: true,
-	minlength: 2
+		required: true,
+		minlength: 2
 	},
 	apellidos: {
 		required:true,
 
 	},
 	telefono: {
-	required: true,
-	minlength: 9,
-	maxlength: 20,
-	digits: true
+		required: true,
+		minlength: 9,
+		maxlength: 20,
+		digits: true
 	},
 	email: {
 	required: true,
-	email:true,
-	remote:'php/login.php'
+		remote:'php/login.php'
 	},
 	email2:{
-	required: true,
-	equalTo: '#email'
+		equalTo: '#email'
 	},
 	cifnif: {
-	required:true,
-	minlength:9,
-	remote:'php/validarNif.php',
+		required:true,
+		minlength:9,
+		remote:'php/validarNif.php',
 	nifES:function(){
 // Si el demandante es particular se comprueba formato nif.
-if ($('#particular').is(':checked')){
-$('#cifnif').val().toUpperCase();
-return 'nifES';
-}
-},
-cifES: function(){
-// Si el demandante es empresa se comprueba formato cif.
-if ($('#empresa').is(':checked')){
-$('#cifnif').val().toUpperCase();
-return 'cifES';
-}
-}
+		if ($('#particular').is(':checked')){
+		$('#cifnif').val().toUpperCase();
+		return 'nifES';
+		}
+	},
+	cifES: function(){
+	// Si el demandante es empresa se comprueba formato cif.
+		if ($('#empresa').is(':checked')){
+		$('#cifnif').val().toUpperCase();
+		return 'cifES';
+		}
+	}
 	},
 	nombreempresa: {
 	required:true},
@@ -104,7 +102,6 @@ return 'cifES';
 	required:true
 	},
 	repetircontraseña:{
-		required:true,
 		equalTo:'#password'
 	},
 	messages:{
@@ -115,18 +112,19 @@ return 'cifES';
 		required:'Campo requerido'
 	},
 	iban: {
-		iban:'Introduzca un IBAN correcto'
+		required:true,
+		iban:'iban'
 	}
 	},
 submitHanler:function(){
 	 var registrar=confirm('Esta en proceso de alta y su cuota sera '+$('#sel2').val());
 	if(registrar){
-	prompt('Usuario Registrado');
+	alert('Usuario Registrado');
 	 window.location.reload();
 	}
 	else
 	{
-		prompt('Usuario No registrado');
+		alert('Usuario No registrado');
 	}
 }
 }
@@ -135,7 +133,7 @@ submitHanler:function(){
 $('#particular').change(function(){
 if($('#particular').is(':checked')){
 $('#nombreemp').html('Nombre');
-$('#cifniflabel').html('NIF');
+$('#cifniflabelºº	').html('NIF');
 var completo = $('#nombre').val() + '' + $('#apellidos').val();
 $('#nombreempresa').val(completo);
 $('#nombreempresa').prop('readonly' , true);
@@ -349,9 +347,6 @@ jQuery.validator.addMethod( "nieES", function ( value, element ) {
  return false;
  
 }, "NIE no valido." );
- 
- 
- 
 jQuery.validator.addMethod( "cifES", function ( value, element ) {
  "use strict";
   

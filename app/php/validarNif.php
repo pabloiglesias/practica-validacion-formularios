@@ -1,5 +1,5 @@
 <?php
-$dni = trim(strtolower($_GET['cifnif']));
+$dni = trim(strtolower($_REQUEST['cifnif']));
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 $db = new mysqli("localhost", "pabloiglesias_bd", "provincias", "pabloiglesias_pro");
@@ -9,17 +9,16 @@ if ($errorbd == null) {
 	$sql = "SELECT dni FROM usuarios;";
 	if (!$resultado = $db->query($sql)) {
 		die('Ocurrio un error ejecutando el query [' . $db->error . ']');}
-	$noexiste = true;
+	$noexiste = 'true';
 	while ($resul = $resultado->fetch_assoc()) {
-		if ($dni === $resul['dni']) {
+		if ($dni == $resul['dni']) {
 			$noexiste = 'NIF Registrado Imposible Registrar';
 		}
 	}
-
 } else {
-	// si la conexión da error
 	print "Imposible conectar con la bbdd ";
 }
 $db->close();
 unset($db);
 echo $noexiste;
+?>

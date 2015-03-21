@@ -128,8 +128,6 @@ form li:after
 }
 label.error{
   color: red;
-  background-image: url("http://www.google.es/imgres?imgurl=http://subversion.developpez.com/projets/abaca/releases/abaca_classic-1.2.0-fx/global/icons/Error.png&imgrefurl=http://subversion.developpez.com/projets/abaca/releases/abaca_classic-1.2.0-fx/global/icons/&h=32&w=32&tbnid=xoA08f_khK-IOM:&zoom=1&docid=wGyk9WYCbFJvyM&ei=OWfyVI--JpD5ateWgvAM&tbm=isch&client=ubuntu&ved=0CC4QMygPMA8");
-  background-repeat: no-repeat;
 } 
 input.error {
   background-color: #FF9F9F

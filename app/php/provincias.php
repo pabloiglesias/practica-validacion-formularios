@@ -27,5 +27,5 @@ if ($errorbd == null) {
 	print "Imposible conectar con la bbdd de provincias";
 }
 $db->close();
-
 unset($db);
+?>

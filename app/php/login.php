@@ -1,5 +1,5 @@
 <?php
-$email = trim(strtolower($_GET['email']));
+$email = trim(strtolower($_REQUEST['email']));
 // Aceptamos peticiones cors
 header('content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
@@ -13,10 +13,10 @@ if ($errorbd == null) {
 	$sql = "SELECT email FROM usuarios;";
 	if (!$resultado = $db->query($sql)) {
 		die('Ocurrio un error ejecutando el query [' . $db->error . ']');}
-	$noexiste = true;
+	$noexiste = 'true';
 	while ($resul = $resultado->fetch_assoc()) {
-		if ($email === $resul['email']) {
-			$noexiste = false;
+		if ($email == $resul['email']) {
+			$noexiste = 'Usuario Ya Registrado';
 		}
 	}
 
@@ -25,5 +25,6 @@ if ($errorbd == null) {
 	print "Imposible conectar con la bbdd ";
 }
 $db->close();
-
 unset($db);
+echo $noexiste;
+?>
