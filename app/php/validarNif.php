@@ -12,7 +12,7 @@ if ($errorbd == null) {
 	$noexiste = 'true';
 	while ($resul = $resultado->fetch_assoc()) {
 		if ($dni == $resul['dni']) {
-			$noexiste = 'NIF Registrado Imposible Registrar';
+			$noexiste = '"NIF Registrado Imposible Registrar"';
 		}
 	}
 } else {

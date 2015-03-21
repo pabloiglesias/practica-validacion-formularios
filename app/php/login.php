@@ -16,7 +16,7 @@ if ($errorbd == null) {
 	$noexiste = 'true';
 	while ($resul = $resultado->fetch_assoc()) {
 		if ($email == $resul['email']) {
-			$noexiste = 'Usuario Ya Registrado';
+			$noexiste = '"Usuario Ya Registrado"';
 		}
 	}
 
