@@ -99,10 +99,11 @@ $(document).ready(function(){
 	minlength: 4
 	},
 	password:{
-	required:true
+	required:true,
+	minlength:8
 	},
 	repetircontraseña:{
-		equalTo:'#password'
+		equalTo:password
 	},
 	messages:{
 	nombre:{
@@ -117,15 +118,18 @@ $(document).ready(function(){
 	}
 	},
 submitHanler:function(){
-	 var registrar=confirm('Esta en proceso de alta y su cuota sera '+$('#sel2').val());
+	var nombre =$('#usuario').val();
+	 var registrar=confirm('Esta en proceso de alta para el usuario '+$nombre+' y su cuota sera '+$('#sel2').val());
 	if(registrar){
 	alert('Usuario Registrado');
-	 window.location.reload();
+	 
 	}
 	else
 	{
 		alert('Usuario No registrado');
+
 	}
+	window.location.reload();
 }
 }
 });
@@ -133,7 +137,7 @@ submitHanler:function(){
 $('#particular').change(function(){
 if($('#particular').is(':checked')){
 $('#nombreemp').html('Nombre');
-$('#cifniflabelºº	').html('NIF');
+$('#cifniflabel').html('NIF');
 var completo = $('#nombre').val() + '' + $('#apellidos').val();
 $('#nombreempresa').val(completo);
 $('#nombreempresa').prop('readonly' , true);
