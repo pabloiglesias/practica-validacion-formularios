@@ -120,32 +120,17 @@ $(document).ready(function(){
 	},
 submitHandler : function (){
 	var nombre =$('#usuario').val();
-	$('.confirm').confirm({
-    text: 'Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val(),
-    title: 'Confirmacion requerida',
-    confirm: function(button) {
-        window.location.reload();
-    },
-    cancel: function(button) {
-        // nothing to do
-    },
-    confirmButton: 'Dar de alta',
-    cancelButton: 'No Dar alta',
-    post: true,
-    });
-	/*var nombre =$('#usuario').val();
-	 var registrar=confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
+	var registrar=confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
 	if(registrar == 1){
-	alert("<<Usuario Registrado>>");
+	alert("  Usuario Registrado  ");
 	 
 	}
 	else
 	{
-		alert("<<Usuario No registrado>>");
+		alert("  Usuario No registrado ");
 
 	}
 	window.location.reload();
-}*/
 }
 }
 });
