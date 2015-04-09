@@ -118,7 +118,7 @@ $(document).ready(function(){
 		iban:'iban'
 	}
 	},
-submitHanler:function(){
+submitHandler:function(){
 	var nombre =$('#usuario').val();
 	 var registrar=confirm('Esta en proceso de alta para el usuario '+ $nombre +' y su cuota sera '+$('#sel2').val());
 	if(registrar === 1){
