@@ -23,7 +23,7 @@
     </div>
 <div class="contenedor">
 <div class="col-md-6">
-<form role="form" novalidate id="formulario" method="post" action="registro.php">
+<form role="form"  action="registro.php" id="formulario" method="post"  novalidate>
 <fieldset>
 <legend>Información de contacto</legend>
 <div class="form-group">
@@ -126,8 +126,9 @@
 <label for="repetircontraseña">Repetir contraseña<span class="error">*</span></label>
 <input type="password" class="form-control input-sm" name="repetircontraseña" id="repetircontraseña"/>
 </div>
+<input class="confirm" type="submit" value="Enviar"/><br><br>
 </fieldset>
-<button type="submit" value="Enviar"/><br><br>
+
 </form>
 </div>
 
@@ -136,6 +137,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery-validate/dist/jquery.validate.js"></script>
     <script src="bower_components/jquery.complexify.js/jquery.complexify.js"></script>
+    <script src="bower_components/jquery-confirm/jquery.confirm.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
