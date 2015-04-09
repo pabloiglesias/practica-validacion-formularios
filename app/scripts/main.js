@@ -121,7 +121,7 @@ $(document).ready(function(){
 submitHanler:function(){
 	var nombre =$('#usuario').val();
 	 var registrar=confirm('Esta en proceso de alta para el usuario '+ $nombre +' y su cuota sera '+$('#sel2').val());
-	if(registrar == 1){
+	if(registrar === 1){
 	alert('Usuario Registrado');
 	 
 	}
