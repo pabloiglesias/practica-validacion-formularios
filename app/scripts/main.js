@@ -122,9 +122,8 @@ submitHandler : function (){
 	var nombre =$('#usuario').val();
 	var registrar=confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
 	if(registrar == 1){
-	alert("  Usuario Registrado  ");
-	 
-	}
+		alert("  Usuario Registrado  ");
+	 }
 	else
 	{
 		alert("  Usuario No registrado ");
@@ -323,7 +322,6 @@ cRest = cOperator % 97;
 return cRest === 1;
 }, "Por favor introduce un IBAN correcto");
 
-});
 jQuery.validator.addMethod("nifES", function (value, element) {
 if(/^([0-9]{8})*[a-zA-Z]+$/.test(value)){
 var dni = value.substr(0,value.length-1);
