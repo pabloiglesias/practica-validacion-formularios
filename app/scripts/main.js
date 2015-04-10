@@ -2,7 +2,7 @@
  $('#formulario').each (function(){
 this.reset();
 });
-$(document).ready(function(){
+//$(document).ready(function(){
 	$.extend($.validator.messages, {
 	required: "Este campo es obligatorio.",
 	remote: "Por favor, rellena este campo.",
@@ -106,6 +106,7 @@ $(document).ready(function(){
 	repetircontraseña:{
 		equalTo:password
 	},
+	},
 	messages:{
 	nombre:{
 		required:'Campo obligatorio'
@@ -118,10 +119,10 @@ $(document).ready(function(){
 		iban:'iban'
 	}
 	},
-submitHandler : function (){
+	submitHandler: function (){
 	var nombre =$('#usuario').val();
-	var registrar=confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
-	if(registrar == 1){
+	var registrar = confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
+	if(registrar){
 	alert('  Usuario Registrado  ');
 	 
 	}
@@ -132,9 +133,8 @@ submitHandler : function (){
 	}
 	window.location.reload();
 }
-}
 });
-});
+//});
 $('#particular').change(function(){
 if($('#particular').is(':checked')){
 $('#nombreemp').html('Nombre');
