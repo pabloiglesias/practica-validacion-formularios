@@ -122,18 +122,19 @@ submitHandler : function (){
 	var nombre =$('#usuario').val();
 	var registrar=confirm('Esta en proceso de alta para el usuario '+ nombre +' y su cuota sera '+$('#sel2').val());
 	if(registrar == 1){
-		alert("  Usuario Registrado  ");
-	 }
+	alert('  Usuario Registrado  ');
+	 
+	}
 	else
 	{
-		alert("  Usuario No registrado ");
+		alert(' Usuario No registrado ');
 
 	}
 	window.location.reload();
 }
 }
 });
- 
+});
 $('#particular').change(function(){
 if($('#particular').is(':checked')){
 $('#nombreemp').html('Nombre');
@@ -197,7 +198,6 @@ $('#email').focusout(function(){
 $('#password').focusin(function () {
 $('#password').complexify({}, function (valid, complexity) {
 $('#complex').attr('value',complexity);
-
 });
 });
 
@@ -375,4 +375,4 @@ jQuery.validator.addMethod( "cifES", function ( value, element ) {
   
  return false;
   
-}, "Numero de CIF No valido." );
+}, "Numero de CIF No valido." ); 
